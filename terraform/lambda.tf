@@ -12,9 +12,6 @@ resource "aws_lambda_function" "bun_lambda" {
     "x86_64"
   ]
   package_type = "Image"
-  image_config {
-    command = ["/var/task/target/debug/bun_lambda"]
-  }
   image_uri   = local.lambdaImage
   memory_size = 1024
   role        = aws_iam_role.lambda-role.arn
