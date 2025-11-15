@@ -13,8 +13,7 @@ const server = createServer({
   enableResponseLogging: true,
 });
 
+// Docker Lambda adapter expects server to listen on port 8080
 server.listen(8080, () => {
   console.log("Server is running on port 8080");
 });
-
-export default server;
