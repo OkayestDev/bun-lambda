@@ -1,6 +1,6 @@
 module "bun-lambda" {
   source                    = "../../terraform"
-  lambda_function_handler   = "handler.ts"
+  lambda_function_handler   = "index.ts"
   image_name                = "bun-lambda"
   image_tag                 = "latest"
   lambda_name               = "bun-lambda"

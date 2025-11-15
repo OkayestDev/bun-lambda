@@ -5,7 +5,7 @@ locals {
 resource "aws_lambda_function" "bun_lambda" {
   depends_on = [
     aws_ecr_repository.ecr,
-    null_resource.docker_build_and_push
+    null_resource.docker_push
   ]
   function_name = var.lambda_name
   architectures = var.lambda_architectures

@@ -1,4 +1,4 @@
-import { createLambda, get } from "valita-server";
+import { createServer, get } from "valita-server";
 import type { Request, Response } from "valita-server";
 
 get("/", (_: Request): Response => {
@@ -8,7 +8,13 @@ get("/", (_: Request): Response => {
   };
 });
 
-export default createLambda({
+const server = createServer({
   enableRequestLogging: true,
   enableResponseLogging: true,
 });
+
+server.listen(8080, () => {
+  console.log("Server is running on port 8080");
+});
+
+export default server;
