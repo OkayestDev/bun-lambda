@@ -29,6 +29,8 @@ module "bun_lambda" {
 }
 ```
 
+See an [example](./example) of a basic api gw -> lambda implementation using this module
+
 ---
 
 ## Input Variables
