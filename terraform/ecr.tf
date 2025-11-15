@@ -1,3 +1,3 @@
-resource "aws_ecr_repository" "bun-lambda-ecr" {
-  name = "bun-lambda-image"
+resource "aws_ecr_repository" "ecr" {
+  name = var.image_name
 }

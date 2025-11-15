@@ -8,7 +8,7 @@ get("/", (_: Request): Response => {
   };
 });
 
-export const handler = createLambda({
+export default createLambda({
   enableRequestLogging: true,
   enableResponseLogging: true,
 });

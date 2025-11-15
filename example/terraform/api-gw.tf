@@ -19,7 +19,7 @@ resource "aws_api_gateway_method" "any_method" {
 resource "aws_lambda_permission" "apigw" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.handler.function_name
+  function_name = module.bun-lambda.lambda_function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*"
 }
@@ -30,7 +30,7 @@ resource "aws_api_gateway_integration" "lambda_proxy" {
   http_method             = aws_api_gateway_method.any_method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.handler.invoke_arn
+  uri                     = module.bun-lambda.lambda_function_invoke_arn
 }
 
 resource "aws_api_gateway_method" "any_root" {
@@ -46,7 +46,7 @@ resource "aws_api_gateway_integration" "lambda_root" {
   http_method             = aws_api_gateway_method.any_root.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.handler.invoke_arn
+  uri                     = module.bun-lambda.lambda_function_invoke_arn
 }
 
 resource "aws_api_gateway_deployment" "deployment" {
@@ -58,5 +58,5 @@ resource "aws_api_gateway_deployment" "deployment" {
 }
 
 output "api_gateway_invoke_url" {
-  value = aws_api_gateway_deployment.deployment.invoke_url
+  value = "https://${aws_api_gateway_rest_api.api.id}.execute-api.us-east-2.amazonaws.com/prod"
 }

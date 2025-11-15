@@ -1,19 +1,20 @@
 locals {
-  lambdaImage = "${aws_ecr_repository.bun-lambda-ecr.repository_url}:latest"
+  lambdaImage = "${aws_ecr_repository.ecr.repository_url}:${var.image_tag}"
 }
 
 resource "aws_lambda_function" "bun_lambda" {
   depends_on = [
-    aws_ecr_repository.bun-lambda-ecr
+    aws_ecr_repository.ecr,
+    null_resource.docker_build_and_push
   ]
-  description   = ""
-  function_name = "bun_lambda"
-  architectures = [
-    "x86_64"
-  ]
-  package_type = "Image"
-  image_uri   = local.lambdaImage
-  memory_size = 1024
-  role        = aws_iam_role.lambda-role.arn
-  timeout     = 30
+  function_name = var.lambda_name
+  architectures = var.lambda_architectures
+  package_type  = "Image"
+  image_uri     = local.lambdaImage
+  memory_size   = var.lambda_memory_size
+  role          = var.lambda_execution_role_arn != null ? var.lambda_execution_role_arn : aws_iam_role.lambda-role.arn
+  timeout       = var.lambda_timeout
+  image_config {
+    command = ["bun", var.lambda_function_handler]
+  }
 }

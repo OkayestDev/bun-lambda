@@ -32,3 +32,9 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Finder (MacOS) folder config
 .DS_Store
+terraform/*.Dockerfile
+terraform/.terraform
+terraform/.terraform.lock.hcl
+
+example/terraform/.terraform
+example/terraform/.terraform.lock.hcl

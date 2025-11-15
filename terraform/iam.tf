@@ -14,7 +14,7 @@ resource "aws_iam_role_policy" "IAMPolicy3" {
             "Effect": "Allow",
             "Action": [
                 "cloudwatch:*",
-                "logs:*",
+                "logs:*"
             ],
             "Resource": "*"
         }
