@@ -13,9 +13,12 @@ ENV PORT=8080
 # Set the work directory to `/var/task`. This is the default work directory for Lambda.
 WORKDIR "/var/task"
 
-COPY {{PACKAGE_JSON_PATH}} ./package.json
-COPY {{BUN_LOCK_PATH}} ./bun.lock
+COPY {{PACKAGE_JSON_PATH}} {{BUN_LOCK_PATH}} ./
 
-RUN bun install --production --frozen-lockfile
+RUN bun install --production --frozen-lockfile && \
+    rm -rf /root/.bun/install/cache && \
+    find node_modules -type d \( -name "test" -o -name "tests" -o -name "__tests__" -o -name "*.test.*" \) -exec rm -rf {} + 2>/dev/null || true && \
+    find node_modules -type f \( -name "*.md" -o -name "*.txt" -o -name "LICENSE" -o -name "CHANGELOG*" \) -delete 2>/dev/null || true && \
+    rm -f bun.lock
 
 COPY {{CODE_PATH}} /var/task

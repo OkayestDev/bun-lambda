@@ -1,5 +1,14 @@
 locals {
-  lambdaImage = "${aws_ecr_repository.ecr.repository_url}:${var.image_tag}"
+  lambdaImage = "${aws_ecr_repository.ecr.repository_url}@${data.aws_ecr_image.lambda_image.image_digest}"
+}
+
+data "aws_ecr_image" "lambda_image" {
+  depends_on = [
+    aws_ecr_repository.ecr,
+    null_resource.docker_push
+  ]
+  repository_name = aws_ecr_repository.ecr.name
+  image_tag       = var.image_tag
 }
 
 resource "aws_lambda_function" "bun_lambda" {
