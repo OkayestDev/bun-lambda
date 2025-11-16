@@ -1,6 +1,6 @@
 # Bun Lambda Terraform Module
 
-A Terraform module to deploy AWS Lambda functions built with [Bun](https://bun.sh/). This module allows you to leverage Bun's blazing fast JavaScript/TypeScript runtime in serverless workloads, making your Lambda deployments efficient and easy to manage.
+A Terraform module to deploy AWS Lambda functions built with [Bun](https://bun.sh/). This module allows you to leverage Bun's fast JavaScript/TypeScript runtime in serverless workloads, making your Lambda deployments efficient and easy to manage.
 
 ## Features
 
