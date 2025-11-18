@@ -2,7 +2,7 @@
 FROM public.ecr.aws/awsguru/aws-lambda-adapter:0.9.0 AS aws-lambda-adapter
 
 
-FROM oven/bun:debian AS bun_latest
+FROM oven/bun:slim AS bun_latest
 
 # Copy the Lambda adapter into the container
 COPY --from=aws-lambda-adapter /lambda-adapter /opt/extensions/lambda-adapter
