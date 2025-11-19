@@ -1,4 +1,4 @@
-import { createServer, get } from "valita-server";
+import { createServer, get, defaultErrorHandler } from "valita-server";
 import type { Request, Response } from "valita-server";
 
 get("/", (_: Request): Response => {
@@ -8,9 +8,17 @@ get("/", (_: Request): Response => {
   };
 });
 
+get("/error", (_: Request): Response => {
+  throw new Error("Error");
+});
+
 const server = createServer({
   enableRequestLogging: true,
   enableResponseLogging: true,
+  errorHandler: (error: Error) => {
+    console.error({ error });
+    return defaultErrorHandler(error);
+  },
 });
 
 // Docker Lambda adapter expects server to listen on port 8080

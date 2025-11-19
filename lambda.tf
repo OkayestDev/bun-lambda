@@ -23,7 +23,4 @@ resource "aws_lambda_function" "bun_lambda" {
   memory_size   = var.lambda_memory_size
   role          = var.lambda_execution_role_arn != null ? var.lambda_execution_role_arn : aws_iam_role.lambda-role.arn
   timeout       = var.lambda_timeout
-  image_config {
-    command = ["bun", "run", var.lambda_function_handler]
-  }
 }

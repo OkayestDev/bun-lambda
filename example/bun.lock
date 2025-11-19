@@ -5,12 +5,10 @@
     "": {
       "name": "bun-lambda",
       "dependencies": {
-        "valita-server": "^1.0.1",
+        "valita-server": "^1.0.2",
       },
       "devDependencies": {
         "@types/bun": "latest",
-      },
-      "peerDependencies": {
         "typescript": "^5",
       },
     },
@@ -30,7 +28,7 @@
 
     "undici-types": ["undici-types@7.16.0", "", {}, "sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw=="],
 
-    "valita-server": ["valita-server@1.0.1", "", { "dependencies": { "zod": "^4.1.12" } }, "sha512-nzrYJ43PXTCh36BOgn8z3MloL37tI5tYLI7xs+Lz+xDegKpX/1l76m/8FkXh85yUEFp4ublB7Acy3/0hVdUEBA=="],
+    "valita-server": ["valita-server@1.0.2", "", { "dependencies": { "zod": "^4.1.12" } }, "sha512-wIMzjavKLw4FuH3GxAbQinWe89P5uvfQyh75wJIgAz8eT+6WK4CuUNofp/RvSQ2zBhGFkXONUpHdfyNSOoao2w=="],
 
     "zod": ["zod@4.1.12", "", {}, "sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ=="],
   }

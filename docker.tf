@@ -5,7 +5,7 @@ resource "null_resource" "template_dockerfile" {
 
   provisioner "local-exec" {
     command = <<EOF
-        bun ${path.module}/template-dockerfile.js ${var.code_path} ${var.package_json_path} ${var.bun_lock_path} ${var.image_name}
+        bun ${path.module}/template-dockerfile.js ${var.code_path} ${var.package_json_path} ${var.bun_lock_path} ${var.lambda_function_handler} ${var.image_name}
     EOF
   }
 }

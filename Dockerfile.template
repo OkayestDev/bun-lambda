@@ -1,14 +1,7 @@
 # Use the official AWS Lambda adapter image to handle the Lambda runtime
 FROM public.ecr.aws/awsguru/aws-lambda-adapter:0.9.0 AS aws-lambda-adapter
 
-
 FROM oven/bun:slim AS bun_latest
-
-# Copy the Lambda adapter into the container
-COPY --from=aws-lambda-adapter /lambda-adapter /opt/extensions/lambda-adapter
-
-# Set the port to 8080. This is required for the AWS Lambda adapter.
-ENV PORT=8080
 
 # Set the work directory to `/var/task`. This is the default work directory for Lambda.
 WORKDIR "/var/task"
@@ -22,3 +15,19 @@ RUN bun install --production --frozen-lockfile && \
     rm -f bun.lock
 
 COPY {{CODE_PATH}} /var/task
+
+RUN bun build --compile /var/task/{{LAMBDA_FUNCTION_HANDLER}} --outfile lambda
+
+FROM gcr.io/distroless/base:latest
+
+# Copy the Lambda adapter into the container
+COPY --from=aws-lambda-adapter /lambda-adapter /opt/extensions/lambda-adapter
+
+WORKDIR /var/task
+
+COPY --from=bun_latest /var/task/lambda /var/task/lambda
+
+# Set the port to 8080. This is required for the AWS Lambda adapter.
+ENV PORT=8080
+
+CMD ["/var/task/lambda"]
