@@ -1,14 +1,14 @@
 import { createServer, get, defaultErrorHandler } from "valita-server";
 import type { Request, Response } from "valita-server";
 
-get("/", (_: Request): Response => {
+get("/compiled", (_: Request): Response => {
   return {
     status: 200,
-    body: { message: "Hello World" },
+    body: { message: "Hello from compiled handler" },
   };
 });
 
-get("/error", (_: Request): Response => {
+get("/compiled/error", (_: Request): Response => {
   throw new Error("Error");
 });
 

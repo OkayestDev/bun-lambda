@@ -72,3 +72,9 @@ variable "aws_profile" {
   type        = string
   default     = null
 }
+
+variable "compile_code" {
+  description = "Whether to compile the code. If set to false, typescript will be transpiled to javascript."
+  type        = bool
+  default     = false
+}

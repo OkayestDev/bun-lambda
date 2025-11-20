@@ -1,9 +1,9 @@
-module "bun-lambda" {
+module "transpiled-lambda" {
   source                    = "../../"
-  lambda_function_handler   = "handler.ts"
-  image_name                = "bun-lambda"
+  lambda_function_handler   = "transpiled-handler.ts"
+  image_name                = "transpiled-lambda"
   image_tag                 = "latest"
-  lambda_name               = "bun-lambda"
+  lambda_name               = "transpiled-lambda"
   lambda_architectures      = ["x86_64"]
   lambda_memory_size        = 1024
   lambda_timeout            = 30
@@ -12,4 +12,5 @@ module "bun-lambda" {
   package_json_path         = "${path.module}/../package.json"
   bun_lock_path             = "${path.module}/../bun.lock"
   aws_profile               = "localplay"
+  compile_code              = false
 }

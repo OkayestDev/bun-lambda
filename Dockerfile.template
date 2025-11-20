@@ -16,18 +16,22 @@ RUN bun install --production --frozen-lockfile && \
 
 COPY {{CODE_PATH}} /var/task
 
-RUN bun build --compile /var/task/{{LAMBDA_FUNCTION_HANDLER}} --outfile lambda
+{{COMPILE}}
 
 FROM gcr.io/distroless/base:latest
+
+# This will conditionally copy bun binary fron bun_latest if not compiling code
+{{BUN_INSTALL}}
 
 # Copy the Lambda adapter into the container
 COPY --from=aws-lambda-adapter /lambda-adapter /opt/extensions/lambda-adapter
 
 WORKDIR /var/task
 
-COPY --from=bun_latest /var/task/lambda /var/task/lambda
+COPY --from=bun_latest /var/task/ /var/task/
 
 # Set the port to 8080. This is required for the AWS Lambda adapter.
 ENV PORT=8080
 
-CMD ["/var/task/lambda"]
+
+{{COMMAND}}
