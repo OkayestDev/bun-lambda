@@ -5,7 +5,7 @@
     "": {
       "name": "bun-lambda",
       "dependencies": {
-        "valita-server": "^1.0.2",
+        "valita-server": "^1.1.0",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -20,15 +20,21 @@
 
     "@types/react": ["@types/react@19.2.5", "", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-keKxkZMqnDicuvFoJbzrhbtdLSPhj/rZThDlKWCDbgXmUg0rEUFtRssDXKYmtXluZlIqiC5VqkCgRwzuyLHKHw=="],
 
+    "atomic-sleep": ["atomic-sleep@1.0.0", "", {}, "sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ=="],
+
+    "batch-stdout": ["batch-stdout@0.1.0", "", { "dependencies": { "sonic-boom": "^4.2.0" } }, "sha512-KcEshSJEiRV53xXGKrskGI26JJ/F8ZGRhyU2wYGz/u4ayYICc2ly9s9uc9qbt608Cp+c6/3LszdM5rLEizOvbw=="],
+
     "bun-types": ["bun-types@1.3.2", "", { "dependencies": { "@types/node": "*" }, "peerDependencies": { "@types/react": "^19" } }, "sha512-i/Gln4tbzKNuxP70OWhJRZz1MRfvqExowP7U6JKoI8cntFrtxg7RJK3jvz7wQW54UuvNC8tbKHHri5fy74FVqg=="],
 
     "csstype": ["csstype@3.2.0", "", {}, "sha512-si++xzRAY9iPp60roQiFta7OFbhrgvcthrhlNAGeQptSY25uJjkfUV8OArC3KLocB8JT8ohz+qgxWCmz8RhjIg=="],
+
+    "sonic-boom": ["sonic-boom@4.2.0", "", { "dependencies": { "atomic-sleep": "^1.0.0" } }, "sha512-INb7TM37/mAcsGmc9hyyI6+QR3rR1zVRu36B0NeGXKnOOLiZOfER5SA+N7X7k3yUYRzLWafduTDvJAfDswwEww=="],
 
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
     "undici-types": ["undici-types@7.16.0", "", {}, "sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw=="],
 
-    "valita-server": ["valita-server@1.0.2", "", { "dependencies": { "zod": "^4.1.12" } }, "sha512-wIMzjavKLw4FuH3GxAbQinWe89P5uvfQyh75wJIgAz8eT+6WK4CuUNofp/RvSQ2zBhGFkXONUpHdfyNSOoao2w=="],
+    "valita-server": ["valita-server@1.1.0", "", { "dependencies": { "batch-stdout": "^0.1.0", "zod": "^4.1.12" } }, "sha512-1r0co3ugyKlpkREQoZYHDq7vf+6RvmmzITWTLLi1v1XuR/LcofslXWiRacH2vii6X0+K3HXNcFExw6JbJIHpIw=="],
 
     "zod": ["zod@4.1.12", "", {}, "sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ=="],
   }

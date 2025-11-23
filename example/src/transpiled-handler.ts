@@ -1,4 +1,4 @@
-import { createServer, get, defaultErrorHandler } from "valita-server";
+import { createServer, get, defaultErrorHandler, log } from "valita-server";
 import type { Request, Response } from "valita-server";
 
 get("/transpiled", (_: Request): Response => {
@@ -12,11 +12,18 @@ get("/transpiled/error", (_: Request): Response => {
   throw new Error("Error");
 });
 
+function loggingFn(path: string, data: Record<string, any>) {
+  log.info(path, {
+    ...data,
+    headers: undefined,
+  });
+}
+
 const server = createServer({
   enableRequestLogging: true,
   enableResponseLogging: true,
+  loggingFn,
   errorHandler: (error: Error) => {
-    console.error({ error });
     return defaultErrorHandler(error);
   },
 });
